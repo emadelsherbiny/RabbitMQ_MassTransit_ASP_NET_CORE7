@@ -30,11 +30,16 @@ builder.Services.AddMassTransit(x =>
             e.Consumer<PersonCreatedConsumer>(context);
 
         });
+        cfg.ReceiveEndpoint("RequestReponseMsg", e =>
+        {
+            e.Consumer<BalanceUpdated>(context);
 
-        
+        });
+
     });
     x.AddConsumer<OrderCreatedConsumer>();
     x.AddConsumer<PersonCreatedConsumer>();
+    x.AddConsumer<BalanceUpdated>();
 
 });
 builder.Services.AddMassTransitHostedService();

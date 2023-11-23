@@ -1,4 +1,5 @@
 using MassTransit;
+using RabbitmqDotNetMass.Common.DTO;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,8 @@ builder.Services.AddMassTransit(x =>
             h.Password("guest");
         });
     }));
+
+    x.AddRequestClient<BalanceUpdateDTO>();
 });
     builder.Services.AddMassTransitHostedService();
 
