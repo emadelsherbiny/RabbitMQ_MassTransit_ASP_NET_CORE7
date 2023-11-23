@@ -25,8 +25,16 @@ builder.Services.AddMassTransit(x =>
             e.Consumer<OrderCreatedConsumer>(context);
 
         });
+        cfg.ReceiveEndpoint("PublishEvent", e =>
+        {
+            e.Consumer<PersonCreatedConsumer>(context);
+
+        });
+
+        
     });
     x.AddConsumer<OrderCreatedConsumer>();
+    x.AddConsumer<PersonCreatedConsumer>();
 
 });
 builder.Services.AddMassTransitHostedService();

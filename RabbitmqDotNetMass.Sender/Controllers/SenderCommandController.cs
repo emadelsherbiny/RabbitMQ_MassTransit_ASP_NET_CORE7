@@ -20,8 +20,7 @@ namespace RabbitmqDotNetMass.Sender.Controllers
         [Route("Test")]
 
         public async Task<IActionResult> Test(OrderDto message)
-        {
-            // await _bus.Publish(message); // first way
+        { 
             var url = new Uri("rabbitmq://localhost/sendMsg");
             var endpoint=await _bus.GetSendEndpoint(url);
             await endpoint.Send(message);
